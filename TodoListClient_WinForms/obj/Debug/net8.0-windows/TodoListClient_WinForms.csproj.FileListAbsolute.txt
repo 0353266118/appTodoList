@@ -19,3 +19,4 @@ C:\Users\Acer\source\repos\TodoListServer\TodoListClient_WinForms\obj\Debug\net8
 C:\Users\Acer\source\repos\TodoListServer\TodoListClient_WinForms\obj\Debug\net8.0-windows\TodoListClient_WinForms.pdb
 C:\Users\Acer\source\repos\TodoListServer\TodoListClient_WinForms\obj\Debug\net8.0-windows\TodoListClient_WinForms.genruntimeconfig.cache
 C:\Users\Acer\source\repos\TodoListServer\TodoListClient_WinForms\obj\Debug\net8.0-windows\ref\TodoListClient_WinForms.dll
+C:\Users\Acer\source\repos\TodoListServer\TodoListClient_WinForms\obj\Debug\net8.0-windows\TodoListClient_WinForms.sourcelink.json

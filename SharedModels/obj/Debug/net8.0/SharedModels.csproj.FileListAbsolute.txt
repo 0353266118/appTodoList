@@ -9,3 +9,4 @@ C:\Users\Acer\source\repos\TodoListServer\SharedModels\obj\Debug\net8.0\SharedMo
 C:\Users\Acer\source\repos\TodoListServer\SharedModels\obj\Debug\net8.0\refint\SharedModels.dll
 C:\Users\Acer\source\repos\TodoListServer\SharedModels\obj\Debug\net8.0\SharedModels.pdb
 C:\Users\Acer\source\repos\TodoListServer\SharedModels\obj\Debug\net8.0\ref\SharedModels.dll
+C:\Users\Acer\source\repos\TodoListServer\SharedModels\obj\Debug\net8.0\SharedModels.sourcelink.json

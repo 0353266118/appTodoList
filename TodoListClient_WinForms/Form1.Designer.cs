@@ -70,10 +70,7 @@
             tasksListBox.Size = new Size(728, 324);
             tasksListBox.TabIndex = 0;
             tasksListBox.SelectedIndexChanged += tasksListBox_SelectedIndexChanged;
-            // 
-            // backgroundWorker1
-            // 
-            
+            tasksListBox.DoubleClick += tasksListBox_DoubleClick;
             // 
             // Form1
             // 

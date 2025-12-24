@@ -17,3 +17,4 @@ C:\Users\Acer\source\repos\TodoListServer\TodoListServer\bin\Debug\net8.0\Newton
 C:\Users\Acer\source\repos\TodoListServer\TodoListServer\bin\Debug\net8.0\SharedModels.dll
 C:\Users\Acer\source\repos\TodoListServer\TodoListServer\bin\Debug\net8.0\SharedModels.pdb
 C:\Users\Acer\source\repos\TodoListServer\TodoListServer\obj\Debug\net8.0\TodoList.9A71622D.Up2Date
+C:\Users\Acer\source\repos\TodoListServer\TodoListServer\obj\Debug\net8.0\TodoListServer.sourcelink.json

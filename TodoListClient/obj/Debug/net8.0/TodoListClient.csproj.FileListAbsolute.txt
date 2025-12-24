@@ -17,3 +17,4 @@ C:\Users\Acer\source\repos\TodoListServer\TodoListClient\bin\Debug\net8.0\Shared
 C:\Users\Acer\source\repos\TodoListServer\TodoListClient\bin\Debug\net8.0\SharedModels.pdb
 C:\Users\Acer\source\repos\TodoListServer\TodoListClient\obj\Debug\net8.0\TodoListClient.csproj.AssemblyReference.cache
 C:\Users\Acer\source\repos\TodoListServer\TodoListClient\obj\Debug\net8.0\TodoList.344B3D88.Up2Date
+C:\Users\Acer\source\repos\TodoListServer\TodoListClient\obj\Debug\net8.0\TodoListClient.sourcelink.json

@@ -71,6 +71,20 @@ void HandleClient(TcpClient client)
                             Console.WriteLine($"Deleted task ID: {taskIdToDelete}");
                         }
                         break;
+                    case "update":
+                        // 1. Giải nén payload thành một đối tượng TaskItem
+                        TaskItem updatedTaskData = JsonConvert.DeserializeObject<TaskItem>(message.Payload);
+
+                        // 2. Tìm công việc cũ trong danh sách dựa trên ID
+                        var taskToUpdate = tasks.SingleOrDefault(t => t.Id == updatedTaskData.Id);
+
+                        // 3. Nếu tìm thấy, cập nhật lại nội dung
+                        if (taskToUpdate != null)
+                        {
+                            taskToUpdate.Content = updatedTaskData.Content;
+                            Console.WriteLine($"Updated task ID {taskToUpdate.Id} to '{taskToUpdate.Content}'");
+                        }
+                        break;
                 }
             } // <-- Trả lại "chìa khóa"
 

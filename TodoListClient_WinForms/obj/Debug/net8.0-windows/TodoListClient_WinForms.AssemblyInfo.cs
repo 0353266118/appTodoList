@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TodoListClient_WinForms")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3e5a2de0b2fbe78007b1c6e9420c04096cbd822c")]
 [assembly: System.Reflection.AssemblyProductAttribute("TodoListClient_WinForms")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TodoListClient_WinForms")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

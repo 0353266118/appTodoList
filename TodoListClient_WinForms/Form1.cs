@@ -12,6 +12,7 @@ namespace TodoListClient_WinForms
         private List<TaskItem> currentTasks = new List<TaskItem>();
         // CancellationTokenSource để ra hiệu cho luồng nền dừng lại một cách an toàn
         private CancellationTokenSource cts;
+        private TaskItem taskBeingEdited = null;
 
         public Form1()
         {
@@ -44,7 +45,8 @@ namespace TodoListClient_WinForms
                 stream = client.GetStream();
 
                 // Khi kết nối thành công, nhờ luồng UI hiển thị thông báo và bật nút Add
-                this.Invoke(new Action(() => {
+                this.Invoke(new Action(() =>
+                {
                     MessageBox.Show("Connected to server successfully!");
                     addButton.Enabled = true;
                 }));
@@ -79,7 +81,8 @@ namespace TodoListClient_WinForms
                 // Nếu có lỗi, nhờ luồng UI hiển thị
                 if (!IsDisposed)
                 {
-                    this.Invoke(new Action(() => {
+                    this.Invoke(new Action(() =>
+                    {
                         MessageBox.Show($"Connection failed or lost: {ex.Message}");
                         addButton.Enabled = false;
                         deleteButton.Enabled = false;
@@ -130,17 +133,48 @@ namespace TodoListClient_WinForms
         }
 
         // CÁC SỰ KIỆN CỦA NÚT BẤM (Giữ nguyên)
+        // SỬA LẠI TOÀN BỘ HÀM NÀY
         private void addButton_Click(object sender, EventArgs e)
         {
             string taskContent = taskTextBox.Text;
+
             if (string.IsNullOrWhiteSpace(taskContent))
             {
                 MessageBox.Show("Please enter a task content.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            var message = new SharedModels.Message { Action = "add", Payload = taskContent };
-            SendMessageToServer(message);
-            taskTextBox.Clear();
+
+            // --- LOGIC MỚI BẮT ĐẦU TỪ ĐÂY ---
+
+            // TRƯỜNG HỢP 1: Đang ở chế độ SỬA (Edit Mode)
+            if (taskBeingEdited != null)
+            {
+                // Cập nhật nội dung mới cho đối tượng đang sửa
+                taskBeingEdited.Content = taskContent;
+
+                // Đóng gói toàn bộ đối tượng taskBeingEdited thành JSON để làm payload
+                string payload = JsonConvert.SerializeObject(taskBeingEdited);
+
+                // Tạo message "update" và gửi đi
+                var message = new SharedModels.Message { Action = "update", Payload = payload };
+                SendMessageToServer(message);
+            }
+            // TRƯỜNG HỢP 2: Đang ở chế độ THÊM (Add Mode) - Giữ nguyên như cũ
+            else
+            {
+                var message = new SharedModels.Message { Action = "add", Payload = taskContent };
+                SendMessageToServer(message);
+            }
+
+            // --- DỌN DẸP VÀ QUAY VỀ TRẠNG THÁI BAN ĐẦU ---
+            ResetToAddMode();
+        }
+        private void ResetToAddMode()
+        {
+            taskBeingEdited = null; // Quan trọng: Quay về trạng thái không sửa gì cả
+            taskTextBox.Clear();    // Xóa trống TextBox
+            addButton.Text = "Add"; // Đổi nút "Save" về lại "Add"
+            tasksListBox.ClearSelected(); // Bỏ chọn trong danh sách
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -159,6 +193,24 @@ namespace TodoListClient_WinForms
         private void tasksListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             deleteButton.Enabled = (tasksListBox.SelectedIndex != -1);
+        }
+
+        private void tasksListBox_DoubleClick(object sender, EventArgs e)
+        {
+            // Kiểm tra xem có mục nào đang được chọn không
+            if (tasksListBox.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            // 1. Lấy ra công việc tương ứng từ danh sách currentTasks
+            taskBeingEdited = currentTasks[tasksListBox.SelectedIndex];
+
+            // 2. Đưa nội dung của nó lên TextBox
+            taskTextBox.Text = taskBeingEdited.Content;
+
+            // 3. Đổi nút "Add" thành "Save" để báo hiệu đang ở chế độ sửa
+            addButton.Text = "Save";
         }
     }
 }
